@@ -9,6 +9,7 @@ import Button from "./commons/Button";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { buildURLWithBase } from "@/lib/utils";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface AddVariantModalFormProps {
   modalFormRef: React.RefObject<HTMLDialogElement | null>;
@@ -21,6 +22,7 @@ export default function AddProductVariant({
   productName,
 }: AddVariantModalFormProps) {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const {
     register,
@@ -59,6 +61,9 @@ export default function AddProductVariant({
       }
       modalFormRef.current?.close();
       reset();
+      queryClient.invalidateQueries({
+        queryKey: ["products", productId],
+      });
       router.refresh(); //(`/products/${productId}`);
       toast.success("Product Variant Created Successfully");
     } catch (error) {
