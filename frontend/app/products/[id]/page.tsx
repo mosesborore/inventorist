@@ -1,4 +1,6 @@
 import React from "react";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+
 import ProductItemDetails from "@/components/ProductItemDetails";
 import { getQueryClient } from "@/get-query-client";
 import { getProduct } from "@/lib/api-functions";
@@ -20,7 +22,9 @@ const ProductDetailsPage = async ({
 
   return (
     <div>
-      <ProductItemDetails />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <ProductItemDetails />
+      </HydrationBoundary>
     </div>
   );
 };
