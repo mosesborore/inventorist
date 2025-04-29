@@ -6,10 +6,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { VariantSchema, AddVariantType } from "../schemas/VariantSchema";
 import InputField from "./commons/InputField";
 import Button from "./commons/Button";
-import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { buildURLWithBase } from "@/lib/utils";
-import { useQueryClient } from "@tanstack/react-query";
+import { useCreateProductVariant } from "@/mutations";
 
 interface AddVariantModalFormProps {
   modalFormRef: React.RefObject<HTMLDialogElement | null>;
@@ -22,7 +20,7 @@ export default function AddProductVariant({
   productName,
 }: AddVariantModalFormProps) {
   const router = useRouter();
-  const queryClient = useQueryClient();
+  const createVariant = useCreateProductVariant(productId);
 
   const {
     register,
@@ -33,46 +31,14 @@ export default function AddProductVariant({
     resolver: zodResolver(VariantSchema),
   });
 
-  async function createVariant({
-    name,
-    quantity,
-    price,
-    bargainPrice,
-    units,
-  }: AddVariantType) {
-    try {
-      const url = buildURLWithBase(`/products/${productId}/variants`);
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          price: price,
-          bargain_price: bargainPrice,
-          quantity: quantity,
-          units: units,
-        }),
-      });
-
-      if (!response.ok) {
-        toast.error("Unable to create product");
-      }
-      modalFormRef.current?.close();
-      reset();
-      queryClient.invalidateQueries({
-        queryKey: ["products", productId],
-      });
-      router.refresh(); //(`/products/${productId}`);
-      toast.success("Product Variant Created Successfully");
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   const onSubmit: SubmitHandler<AddVariantType> = async (data) => {
-    await createVariant(data);
+    await createVariant.mutateAsync(data, {
+      onSuccess: () => {
+        reset();
+        modalFormRef.current?.close();
+        router.refresh();
+      },
+    });
   };
   return (
     <>
