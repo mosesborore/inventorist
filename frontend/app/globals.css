@@ -1,0 +1,47 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* @plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(98% 0 0);
+  --color-base-300: oklch(95% 0 0);
+  --color-base-content: oklch(21% 0.006 285.885);
+  --color-primary: #1a1a2e;
+  --color-primary-content: #eaeaea;
+  --color-secondary: #0f3460;
+  --color-secondary-content: #eaeaea;
+  --color-accent-content: oklch(38% 0.063 188.416);
+  --color-neutral: #e94560;
+  --color-neutral-content: oklch(100% 0 0);
+  --color-info: oklch(62% 0.214 259.815);
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: oklch(72% 0.219 149.579);
+  --color-success-content: oklch(14% 0.004 49.25);
+  --color-warning: oklch(79% 0.184 86.047);
+  --color-warning-content: oklch(12% 0.042 264.695);
+  --color-error: oklch(63% 0.237 25.331);
+  --color-error-content: oklch(97% 0.014 343.198);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+} */
+body {
+  font-family: var(--font-inter), sans-serif;
+}
+
+@utility text-muted {
+  @apply opacity-70;
+}
+
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
