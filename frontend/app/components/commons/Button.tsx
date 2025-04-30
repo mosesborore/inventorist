@@ -8,6 +8,7 @@ interface ButtonProps {
   disabled?: boolean;
   outlined?: boolean;
   className?: string;
+  isLoading?: boolean;
   small?: boolean;
   type?: "submit" | "button" | undefined;
   icon?: IconType;
@@ -19,6 +20,7 @@ function Button({
   disabled,
   outlined,
   className,
+  isLoading,
   small,
   icon: Icon,
   type,
@@ -33,10 +35,11 @@ function Button({
         "btn",
         !outlined && "outline-none",
         small && "btn-sm",
-        className && className
+        className && className,
       )}
     >
       {Icon && <Icon size={18} />}
+      {isLoading && <span className="loading loading-ring loading-md"></span>}
       {label}
     </button>
   );
