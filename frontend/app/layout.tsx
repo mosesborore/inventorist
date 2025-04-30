@@ -16,7 +16,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Inventorist",
-  description: "Inventory Tracking System",
+  description: "Inventory Tracking & Invoicing System",
 };
 
 // import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
