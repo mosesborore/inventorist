@@ -77,53 +77,60 @@ function InvoiceFormModal({ modalFormRef }: InvoiceModalProps) {
       <Modal modalRef={modalFormRef}>
         <h3 className="mb-2 text-lg font-bold">Create Invoice</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <InputField
-            id="buyerName"
-            label="Buyer's Name"
-            errors={errors}
-            placeholder="Enter Buyer's Name"
-            register={register}
-          />
-          <InputField
-            id="buyerPhone"
-            label="Buyer's Phone Number"
-            errors={errors}
-            placeholder="Enter Buyer's Phone Number"
-            register={register}
-          />
-          <InputField
-            id="date"
-            label="Date"
-            type="date"
-            errors={errors}
-            placeholder="Enter Invoice Date"
-            register={register}
-          />
-          <InputField
-            id="dueDate"
-            label="Due Date"
-            type="date"
-            errors={errors}
-            placeholder="Enter Quantity"
-            register={register}
-          />
+          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+            <legend className="fieldset-legend">Buyer Details</legend>
+            <InputField
+              id="buyerName"
+              label="Buyer's Name"
+              errors={errors}
+              placeholder="Enter Buyer's Name"
+              register={register}
+            />
+            <InputField
+              id="buyerPhone"
+              label="Buyer's Phone Number"
+              errors={errors}
+              placeholder="Enter Buyer's Phone Number"
+              register={register}
+            />
+          </fieldset>
+          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+            <legend className="fieldset-legend">Invoice Details</legend>
+            <InputField
+              id="date"
+              label="Date"
+              type="date"
+              errors={errors}
+              placeholder="Enter Invoice Date"
+              register={register}
+            />
+            <InputField
+              id="dueDate"
+              label="Due Date"
+              type="date"
+              errors={errors}
+              placeholder="Enter Quantity"
+              register={register}
+            />
 
-          <InputField
-            id="total"
-            label="Total"
-            type="number"
-            errors={errors}
-            placeholder="Enter Total"
-            register={register}
-          />
-          <InputField
-            id="notes"
-            label="Notes"
-            type="text"
-            errors={errors}
-            placeholder="Enter remarks, if necessary"
-            register={register}
-          />
+            <InputField
+              id="total"
+              label="Total"
+              type="number"
+              errors={errors}
+              placeholder="Enter Total"
+              register={register}
+            />
+            <InputField
+              id="notes"
+              label="Notes"
+              type="text"
+              errors={errors}
+              placeholder="Enter remarks, if necessary"
+              register={register}
+            />
+          </fieldset>
+
           <div>
             <Button
               label={isSubmitting ? "Submitting..." : "Create Invoice"}
