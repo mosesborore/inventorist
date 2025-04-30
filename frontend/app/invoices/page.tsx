@@ -1,9 +1,16 @@
 import React from "react";
-import SellerCard from "@/components/ui/SellerCard";
+import type { Metadata } from "next";
+import Link from "next/link";
+
 import { FaSearch } from "react-icons/fa";
+import SellerCard from "@/components/ui/SellerCard";
 import CreateInvoice from "@/components/CreateInvoice";
 import { buildURLWithBase, cn, formatNumber } from "@/lib/utils";
-import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Inventorist: Invoice",
+  description: "Inventory Tracking & Invoicing System",
+};
 
 interface InvoiceSummary {
   invoiceNumber: string;
