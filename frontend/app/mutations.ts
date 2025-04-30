@@ -36,10 +36,6 @@ export const useCreateSeller = () => {
   });
 };
 
-// interface CreateVariant {
-//   data: AddVariantType;
-// }
-
 export const useCreateProductVariant = (productId: number) => {
   const queryClient = useQueryClient();
 
