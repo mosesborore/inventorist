@@ -104,3 +104,4 @@ class InvoiceSummarySchema(Schema):
     total: float
     buyerName: str = Field(alias="buyer__name")
     date: datetime.date
+    paymentStatus: str = Field(alias="payment_status")

@@ -46,7 +46,7 @@ def get_invoice_summary(request):
         Invoice.objects.select_related("buyer", "seller")
         .prefetch_related("items")
         .annotate(items_count=Count("items"))
-        .values("items_count", "invoice_number", "total", "buyer__name", "date")
+        .values("items_count", "invoice_number", "total", "buyer__name", "date", "payment_status")
     )
 
     return qs
