@@ -129,6 +129,7 @@ function AddInvoiceItems() {
                 type="submit"
                 className="btn btn-sm btn-primary"
                 disabled={isSubmitting}
+                isLoading={isSubmitting}
               ></Button>
             </div>
           </form>
