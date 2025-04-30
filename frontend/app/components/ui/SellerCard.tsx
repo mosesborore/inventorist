@@ -7,7 +7,7 @@ import { useGetSeller } from "@/queries";
 function SellerCard() {
   const { data: seller } = useGetSeller();
   return (
-    <div className="card bg-base-100 w-1/2 shadow-sm">
+    <div className="card bg-base-100 my-2 w-1/2 shadow-md">
       <div className="card-body">
         <h2 className="card-title">Seller Information</h2>
         {seller?.name ? (
