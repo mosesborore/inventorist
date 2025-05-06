@@ -151,9 +151,18 @@ def add_invoice_item(request, invoice_number, invoice_item: InvoiceItemCreateSch
     invoice.refresh_from_db()
     return invoice
 
+
 @router.delete("/{invoice_number}")
 def delete_invoice(request, invoice_number: str):
     invoice = get_object_or_404(Invoice, invoice_number=invoice_number)
     
     invoice.delete()
+    return {"deleted": True}
+
+
+@router.delete("/{invoice_number}/items/{invoice_item_id}")
+def delete_invoice_item(request, invoice_number: str, invoice_item_id: int ):
+    invoice_item = get_object_or_404(InvoiceItem, id=invoice_item_id)
+    
+    invoice_item.delete()
     return {"deleted": True}
