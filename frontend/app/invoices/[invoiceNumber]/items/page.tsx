@@ -13,11 +13,14 @@ async function AddItemsPage({
   return (
     <>
       <div className="my-2">
-        <button className="btn btn-neutral btn-sm flex items-center font-semibold">
-          <FaArrowLeft />{" "}
-          <Link href={`/invoices/${invoiceNumber}`}>Go back</Link>
-        </button>
+        <Link href={`/invoices/${invoiceNumber}`}>
+          <button className="btn btn-ghost btn-sm my-4 flex items-center font-semibold">
+            <FaArrowLeft />
+            <span>Go back</span>
+          </button>
+        </Link>
       </div>
+
       <AddInvoiceItems />
     </>
   );

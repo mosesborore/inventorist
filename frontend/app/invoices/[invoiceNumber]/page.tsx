@@ -4,6 +4,7 @@ import { InvoiceItemSchemaType } from "@/schemas/InvoiceItemSchema";
 import { BuyerSchemaType, SellerSchemaType } from "@/schemas/InvoiceSchema";
 import Link from "next/link";
 import React from "react";
+import { FaArrowLeft } from "react-icons/fa";
 
 function InvoiceHeader({ id }: { id: string }) {
   return (
@@ -40,6 +41,12 @@ async function InvoicePage({
   return (
     <div className="p-1">
       <InvoiceHeader id={invoiceNumber} />
+      <Link href={`/invoices/`}>
+        <button className="btn btn-ghost btn-sm my-4 flex items-center font-semibold">
+          <FaArrowLeft size={12} />
+          <span>Go back</span>
+        </button>
+      </Link>
       <div className="flex items-center gap-x-2">
         <button className="btn btn-sm btn-secondary">
           <Link href={`/invoices/${invoiceNumber}/items`}>Add Items</Link>
