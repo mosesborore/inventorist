@@ -23,7 +23,7 @@ class InvoiceItemSchema(ModelSchema):
 
     class Meta:
         model = InvoiceItem
-        fields = ("description", "quantity", "unit_price", "total")
+        fields = ("id","description", "quantity", "unit_price", "total")
 
 
 class InvoiceSchema(ModelSchema):
