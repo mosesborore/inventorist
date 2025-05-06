@@ -17,11 +17,11 @@ function Navbar() {
   return (
     <div className="container mx-auto">
       <nav className="bg-base-100 flex items-center justify-between px-2 py-5">
-        <Link href="/" className="text-2xl font-bold tracking-wide">
+        <Link href="/" className="text-xl font-bold tracking-wide">
           Inventorist
         </Link>
         <div>
-          <ul className="flex gap-4 font-bold">
+          <ul className="flex gap-4 text-sm font-bold">
             {siteRoutes.map((siteRoute) => {
               return (
                 <li
