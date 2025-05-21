@@ -46,7 +46,14 @@ def get_invoice_summary(request):
         Invoice.objects.select_related("buyer", "seller")
         .prefetch_related("items")
         .annotate(items_count=Count("items"))
-        .values("items_count", "invoice_number", "total", "buyer__name", "date", "payment_status")
+        .values(
+            "items_count",
+            "invoice_number",
+            "total",
+            "buyer__name",
+            "date",
+            "payment_status",
+        )
     )
 
     return qs
@@ -130,7 +137,7 @@ def get_invoice_item(request, invoice_number: str):
 
 @router.post("/{invoice_number}/items", response={200: InvoiceSchema, 404: ErrorSchema})
 def add_invoice_item(request, invoice_number, invoice_item: InvoiceItemCreateSchema):
-    
+
     invoice = Invoice.objects.filter(
         invoice_number=invoice_number,
     ).first()
@@ -155,14 +162,14 @@ def add_invoice_item(request, invoice_number, invoice_item: InvoiceItemCreateSch
 @router.delete("/{invoice_number}")
 def delete_invoice(request, invoice_number: str):
     invoice = get_object_or_404(Invoice, invoice_number=invoice_number)
-    
+
     invoice.delete()
     return {"deleted": True}
 
 
 @router.delete("/{invoice_number}/items/{invoice_item_id}")
-def delete_invoice_item(request, invoice_number: str, invoice_item_id: int ):
+def delete_invoice_item(request, invoice_number: str, invoice_item_id: int):
     invoice_item = get_object_or_404(InvoiceItem, id=invoice_item_id)
-    
+
     invoice_item.delete()
     return {"deleted": True}
