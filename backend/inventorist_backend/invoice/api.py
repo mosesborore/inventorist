@@ -122,7 +122,7 @@ def create_invoice(request, invoice: InvoiceCreateSchema):
             "invoiceNumber": str(invoice_model.invoice_number),
         }
 
-    return {"created": False, "message": "Fialed to create invoice"}
+    return {"created": False, "message": "Failed to create invoice"}
 
 
 @router.get("/{invoice_number}/items")
