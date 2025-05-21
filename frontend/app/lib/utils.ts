@@ -21,17 +21,25 @@ export function buildURL(
 }
 
 /**
- * Creates the URL with a default baseUrl
- * @param path
- * @param query
+ * Creates the URL using configured BACKEND_URL value as base URL, if BACKEND_URL not configured, default baseUrl is used.
+ * which is http://127.0.0.1:8000
+ * @param path - the URL path
+ * @param query - query parameters object
  * @returns complete URL string
  */
 export function buildURLWithBase(
   path: string,
   query?: Record<string, string | number | boolean>,
 ) {
+  let backend_base_url = process.env.BACKEND_URL;
+
+  if (!backend_base_url) {
+    console.error("BACKEND_URL not configured. Using default one.\n");
+    backend_base_url = "http://127.0.0.1:8000";
+  }
+
   path = "/api" + path;
-  return buildURL("http://127.0.0.1:8000", path, query).toString();
+  return buildURL(backend_base_url, path, query).toString();
 }
 
 export const formatNumber = (number: number | undefined) => {
